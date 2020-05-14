@@ -1,6 +1,7 @@
 debug false
 name SharpData UI
 appName sharpdata
+description Instant UI for browsing multiple RDBMS's 
 
 # Configure below. Supported dialects: sqlite, mysql, postgres, sqlserver
 db DIALECT
@@ -12,3 +13,4 @@ db.connection CONNECTION
 # Show only user-defined tables: 
 # args.tables table1,table2
 # args.tables_dbname alt_table1,alt_table2
+publish https://gist.github.com/gistlyn/f0349678d7f09f38c66bb1ecd89b09a5
