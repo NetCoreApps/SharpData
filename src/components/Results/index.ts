@@ -49,7 +49,7 @@ Vue.component('format', FormatString);
         <span class="btn btn-sm px-0" @click="open('csv')"><i class="svg-md svg-external-link"></i> csv</span>
         <span class="btn btn-sm pl-1" @click="open('json')"><i class="svg-md svg-external-link"></i> json</span>
     </div>
-    <div v-else>
+    <div v-else class="loading-query">
         <span class="svg svg-loading svg-2x ml-1"></span>Loading {{ this.columns?.length ? 'results' : 'schema' }}...             
     </div>
     <div v-if="showSelectColumns">

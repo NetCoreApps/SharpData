@@ -50,7 +50,7 @@ main {
     overflow: auto;
     display: grid;
 }
-.main-query {
+.main-query, .loading-query {
     height: 38px;
     font-size: 20px;
 }
