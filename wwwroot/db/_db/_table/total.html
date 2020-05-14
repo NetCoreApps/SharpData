@@ -1,0 +1,34 @@
+{{ {namedConnection:db} |> if (db && db != 'main') |> useDb  }}
+
+```code|quiet
+var ignore = ['db','fields','format','orderby','skip','take']
+var sql = `SELECT COUNT(*) FROM ${sqlQuote(table)}`
+var filters = []
+var queryMap = qs.toObjectDictionary().withoutKeys(ignore)
+#each queryMap.Keys.toList()
+    var search = queryMap[it.sqlVerifyFragment()].sqlVerifyFragment();
+    #if search.startsWith('=')
+        `${sqlQuote(it)} = @${it}` |> addTo => filters
+        queryMap[it] = search.substring(1).coerce()
+    else if search.startsWith('<=') || search.startsWith('>=') || search.startsWith('<>') || search.startsWith('!=')
+        `${sqlQuote(it)} ${search.substring(0,2)} @${it}` |> addTo => filters
+        queryMap[it] = search.substring(2).coerce()
+    else if search.startsWith('<') || search.startsWith('>')
+        `${sqlQuote(it)} ${search.substring(0,1)} @${it}` |> addTo => filters
+        queryMap[it] = search.substring(1).coerce()
+    else if search.endsWith(',')
+        `${sqlQuote(it)} IN (${search.trimEnd(',').split(',').map(i => i.toLong()).join(',')})` |> addTo => filters
+        queryMap[it] = null
+    else if search.startsWith('%') || search.endsWith('%')
+        `${sqlQuote(it).sqlCast('varchar')} LIKE @${it}` |> addTo => filters
+    else
+        `${sqlQuote(it).sqlCast('varchar')} = @${it}` |> addTo => filters
+    /if
+/each
+#if !filters.isEmpty()
+    sql = `${sql} WHERE ${filters.join(' AND ')}`
+/if
+sql |> dbScalar(queryMap) |> return
+```
+{{ ifError |> show(sql) }}
+{{htmlError}}

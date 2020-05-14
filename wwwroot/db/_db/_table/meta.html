@@ -1,0 +1,3 @@
+{{ {namedConnection:db} |> if (db && db != 'main') |> useDb  }}
+{{ table |> dbColumns |> return }}
+{{htmlError}}

@@ -1,0 +1,59 @@
+.grid-layout {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-column-gap: 5px;
+    grid-template-columns: 300px auto;
+    grid-template-rows:    80px  auto;
+    grid-template-areas:
+        "head head"
+        "nav  main"
+}
+header {
+    background: #fff;
+    grid-area: head;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "breadcrumb auth"
+}
+#header {}
+.site-breadcrumbs {
+    padding-left: 0;
+    height: 80px;
+}
+nav {
+    background: #fff;
+    grid-area: nav;
+    padding: 0 2px 0 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: grid;
+    grid-template-rows: 40px auto;
+    grid-template-areas:
+        "filter"
+        "sidebar"
+}
+#nav-filter {
+    grid-area: filter;
+    margin: 2px 0 0 0;
+}
+#sidebar {
+    grid-area: sidebar;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+main {
+    background: #fff;
+    grid-area: main;
+    padding: 2px;
+    grid-row-gap: 5px;
+    overflow: auto;
+    display: grid;
+}
+.main-query {
+    height: 38px;
+    font-size: 20px;
+}
+.main-container {
+    overflow-y: scroll;
+}

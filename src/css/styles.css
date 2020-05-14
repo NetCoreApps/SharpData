@@ -1,0 +1,134 @@
+body {
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #f1f1f1;
+}
+.navbar {
+    border-radius: 0;
+    background: #4183B8 !important;
+}
+a {
+    color: #4183B8;
+}
+a:hover {
+    text-decoration: none;
+}
+.form-check input[type=checkbox], .form-check input[type=radio] {
+    margin-top:7px;
+}
+.breadcrumb {
+    background: none;
+}
+.result {
+    margin: 10px;
+    color: #349268;
+}
+.stacktrace {
+    background: #f1f1f1;
+    padding: 1em;
+    margin: 1em 0 .5em 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    white-space: pre-wrap;
+}
+.results-none {
+    color: #6c757d;
+}
+table.results {
+    /*box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);*/
+    border: 1px solid #eee;
+    background: #fefefe;
+}
+table.results thead tr {
+    background: #eee;
+}
+table.results th {
+    text-align: left;
+    color: #757575;
+    font-size: 13px;
+    line-height: 18px;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+table.results td {
+    color: #212121;
+    font-size: 12px;
+    padding: 5px;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+th .modal-content, td .modal-content {
+    font-size: 1rem; /*revert*/
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+.svg-btn, .btn-link, .th-link {
+    cursor: pointer;
+    user-select: none;
+}
+.btn-link {
+    text-decoration: none;
+}
+#sidebar .selected {
+    font-weight: bold;
+}
+.datamodel {
+    white-space: nowrap;
+}
+.close,.text-close {
+    user-select: none;
+}
+.text-close {
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #999;
+}
+.text-close:hover {
+    color: #666;
+}
+.results-label {
+    color: #666;
+    vertical-align: bottom;
+    line-height: 36px;
+}
+table.results .filters td {
+    padding: 0 1px;
+    margin: 0;
+}
+.filters input {
+    min-width: 50px;
+    width: 100%;
+    font-size: 11px;
+}
+.btn-compact.btn-sm {
+    padding:.10rem .4rem;
+}
+
+.jsonviewer .ib { display: inline-block; }
+.jsonviewer table { border-collapse:collapse; border: solid 1px #ccc; clear: left; }
+.jsonviewer th { text-align: left; padding: 4px 8px; text-shadow: #fff 1px 1px -1px; background: #f1f1f1; white-space:nowrap; font-weight: bold; }
+.jsonviewer td { padding: 8px 8px 0 8px; vertical-align: top; line-height: 18px; }
+.jsonviewer dl { margin: 0; clear: left; }
+.jsonviewer dt { font-weight: bold; width: 160px; clear: left; float: left; display:block; white-space:nowrap; line-height: 26px; }
+.jsonviewer dd { display: block; float: left; line-height: 26px; max-width: 600px; margin: 0; }
+.jsonviewer dl dl dt { font-weight: bold; }
+.jsonviewer hr { display:none; }
+.jsonviewer td dl HR { display:block; padding: 0; clear: left; border: none; }
+.jsonviewer td dl { padding: 4px; margin: 0; height:100%; max-width: 700px; }
+.jsonviewer dl td dl dt { padding: 2px; margin: 0 10px 0 0; font-weight: bold; width: 120px; overflow: hidden; clear: left; float: left; display:block; }
+.jsonviewer dl td dl dd { margin: 0; padding: 2px; display: block; float: left; }
+

@@ -1,0 +1,14 @@
+debug false
+name SharpData UI
+appName sharpdata
+
+# Configure below. Supported dialects: sqlite, mysql, postgres, sqlserver
+db DIALECT
+db.connection CONNECTION
+
+# Add multiple RDBMS's
+# db.connections[dbname] { db:ALT_DIALECT,  connection:ALT_CONNECTION }
+
+# Show only user-defined tables: 
+# args.tables table1,table2
+# args.tables_dbname alt_table1,alt_table2

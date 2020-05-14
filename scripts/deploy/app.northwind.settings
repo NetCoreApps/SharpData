@@ -1,0 +1,12 @@
+debug false
+name SharpData UI
+appName sharpdata
+
+# Configure below. Supported dialects: sqlite, mysql, postgres, sqlserver
+db sqlite
+db.connection northwind.sqlite
+# db.connections[techstacks] { db:postgres,  connection:$TECHSTACKS_DB }
+# db.connections[reporting]  { db:sqlserver, connection:$MSSQL_CONNECTION }
+
+args.tables Customer,Order,OrderDetail,Category,Product,Employee,EmployeeTerritory,Shipper,Supplier,Region,Territory
+# args.tables_techstacks technology,technology_stack,technology_choice,organization,organization_member,post,post_comment,post_vote,custom_user_auth,user_auth_details,user_activity,page_stats
