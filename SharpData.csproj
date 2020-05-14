@@ -5,25 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-<!--        <PackageReference Include="ServiceStack" Version="5.*" />-->
-<!--        <PackageReference Include="ServiceStack.Server" Version="5.*" />-->
-<!--        <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="5.*" />-->
-<!--        <PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="5.*" />-->
-<!--        <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="5.*" />-->
-<!--        <PackageReference Include="ServiceStack.Desktop" Version="5.*" />-->
-        
-        <ProjectReference Include="..\..\..\Source\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack\src\ServiceStack.Client\ServiceStack.Client.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack\src\ServiceStack.Common\ServiceStack.Common.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack\src\ServiceStack.Interfaces\ServiceStack.Interfaces.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack\src\ServiceStack\ServiceStack.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack\src\ServiceStack.Server\ServiceStack.Server.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack.Redis\src\ServiceStack.Redis\ServiceStack.Redis.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack.OrmLite\src\ServiceStack.OrmLite\ServiceStack.OrmLite.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack.OrmLite\src\ServiceStack.OrmLite.Sqlite\ServiceStack.OrmLite.Sqlite.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack.OrmLite\src\ServiceStack.OrmLite.SqlServer\ServiceStack.OrmLite.SqlServer.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack.OrmLite\src\ServiceStack.OrmLite.PostgreSQL\ServiceStack.OrmLite.PostgreSQL.Source.csproj" />
-        <ProjectReference Include="..\..\..\Source\ServiceStack\src\ServiceStack.Desktop\ServiceStack.Desktop.Source.csproj" />
+        <PackageReference Include="ServiceStack" Version="5.*" />
+        <PackageReference Include="ServiceStack.Server" Version="5.*" />
+        <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="5.*" />
+        <PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="5.*" />
+        <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="5.*" />
+        <PackageReference Include="ServiceStack.Desktop" Version="5.*" />
     </ItemGroup>
 
     <ItemGroup>
