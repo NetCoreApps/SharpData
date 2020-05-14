@@ -1,7 +1,6 @@
 {
   "scripts": {
     "dev": "tsc -w",
-    "publish": "dotnet publish -c Release && x run _bundle.ss -to /bin/Release/netcoreapp3.1/publish/wwwroot",
 
     "start-app": "app -debug start https://localhost:5001",
     "pack-app": "cd scripts && pack-app.bat",

@@ -13,6 +13,10 @@
         <PackageReference Include="ServiceStack.Desktop" Version="5.*" />
     </ItemGroup>
 
+    <Target Name="Bundle" BeforeTargets="AfterPublish">
+        <Exec Command="x run _bundle.ss -to /bin/Release/netcoreapp3.1/publish/wwwroot" />
+    </Target>    
+
     <ItemGroup>
       <None Remove="northwind.sqlite" />
       <Content Include="northwind.sqlite">
