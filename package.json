@@ -2,10 +2,10 @@
   "scripts": {
     "dev": "tsc -w",
 
-    "start-app": "app -debug start https://localhost:5001",
-    "pack-app": "cd scripts && pack-app.bat",
-    "publish-app": "cd scripts && publish-app.bat",
+    "start": "app -debug start https://localhost:5001",
+    "pack": "cd scripts && pack-app.bat",
+    "publish": "cd scripts && publish-app.bat",
     "init-test": "copy northwind.sqlite .\\dist && copy scripts\\deploy\\app.northwind.settings .\\dist\\app.settings",
-    "run-app": "cd dist && app -debug"
+    "run-test": "cd dist && app -debug"
   }
 }
