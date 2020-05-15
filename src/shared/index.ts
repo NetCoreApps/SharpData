@@ -5,7 +5,7 @@ import {
     toDate, getField, splitOnFirst,
     errorResponse, errorResponseExcept,
     toPascalCase,
-    queryString, padInt,
+    queryString, padInt, appendQueryString,
 } from '@servicestack/client';
 
 declare let global: any; // populated from package.json/jest
@@ -181,6 +181,15 @@ export async function loadTable(c:any, db:string,table:string) {
         }
     })
 }
+
+export async function sharpData(db:string,table:string,args?:any)  {
+    let url = `/db/${db}/${table}?format=json`;
+    if (args) {
+        url = appendQueryString(url, args);
+    }
+    return await (await fetch(url)).json()
+}
+
 
 Vue.filter('upper', function (value:string) {
     return value?.toUpperCase();

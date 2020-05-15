@@ -1,5 +1,5 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import {ColumnSchema, store} from "../../shared";
+import {ColumnSchema, sharpData, store} from "../../shared";
 import {registerRowComponent} from "./all";
 import {getField} from "@servicestack/client";
 
@@ -20,7 +20,7 @@ class Order extends Vue {
     get id() { return this.row.Id; }
     
     async mounted() {
-        this.details = await (await fetch(`/db/${this.db}/OrderDetail?format=json&OrderId=${this.id}`)).json();
+        this.details = await sharpData(this.db,'OrderDetail',{ OrderId: this.id });
     }
 }
 registerRowComponent('main','Order', Order, 'order');

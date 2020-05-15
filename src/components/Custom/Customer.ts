@@ -1,14 +1,14 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import {ColumnSchema, store} from "../../shared";
+import {ColumnSchema, sharpData, store} from "../../shared";
 import {registerRowComponent} from "./all";
-import {getField} from "@servicestack/client";
+import {appendQueryString, getField} from "@servicestack/client";
 
 @Component({ template: 
 `<div v-if="id" class="pl-2">
     <h3 class="text-success">{{customer.ContactName}}</h3>
     <table class="table table-bordered" style="width:auto">
         <tr>
-            <th>Contact</th>
+            <th>Contact!</th>
             <td>{{ customer.ContactName }} ({{ customer.ContactTitle }})</td>
         </tr>
         <tr>
@@ -43,9 +43,9 @@ class Customer extends Vue {
     get id() { return this.row.Id; }
     
     async mounted() {
-        this.customer = (await (await fetch(`/db/${this.db}/${this.table}?format=json&Id=${this.id}`)).json())[0];
-        const fields = '&fields=Id,EmployeeId,OrderDate,Freight,ShipVia,ShipCity,ShipCountry';
-        this.orders = await (await fetch(`/db/${this.db}/Order?format=json&CustomerId=${this.id}${fields}`)).json();
+        this.customer = (await sharpData(this.db,this.table,{ Id: this.id }))[0];
+        const fields = 'Id,EmployeeId,OrderDate,Freight,ShipVia,ShipCity,ShipCountry';
+        this.orders = await sharpData(this.db,'Order',{ CustomerId: this.id, fields })
     }
 }
 registerRowComponent('main','customer', Customer, 'customer');
