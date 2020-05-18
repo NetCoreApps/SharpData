@@ -9,13 +9,8 @@
         'navigation/chevron_left.svg':        'chevron-left',
         'navigation/chevron_right.svg':       'chevron-right',
         'navigation/expand_less.svg':         'chevron-up',
-        'navigation/close.svg':               'close',
-        'action/done.svg':                    'done',
-        'action/help_outline.svg':            'help',
-        'content/content_copy.svg':           'copy',
         'content/clear.svg':                  'clear',
-        'action/bug_report.svg':              'debug',
-        'editor/insert_drive_file.svg':       'file',
+        'content/filter_list.svg':            'filter',
     } 
 }}
 

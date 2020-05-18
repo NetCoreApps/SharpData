@@ -69,6 +69,7 @@ Vue.component('format', FormatString);
             <tr class="filters">
                 <td v-for="(f,j) in fieldNames">
                     <input type="text" v-model="filters[f]" @keydown.enter.stop="filterSearch()">
+                    <span v-if="j==fieldNames.length-1" style="position:absolute;margin-left:-20px;"><i class="svg svg-btn svg-filter svg-md" :title="helpFilters()" /></span>
                 </td>
             </tr>
             <template v-for="(r,i) in results">
@@ -278,6 +279,16 @@ export class Results extends Vue {
             this.orderBy = field;
         }
         await this.search();
+    }
+
+    helpFilters() {
+        return `Search Filters:
+  Use '=null' or '!=null' to search NULL columns
+  Use '<= < > >= <> !=' prefix to search with that operator
+  Use ',' suffix to perform an IN(values) search on integers
+  Use '%' prefix or suffix to perform a LIKE wildcard search
+  Use '=' prefix to perform an exact coerced search
+Otherwise a 'string equality' search is performed`
     }
 }
 export default Results;

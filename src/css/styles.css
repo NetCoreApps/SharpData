@@ -65,6 +65,9 @@ table.results td {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+table.results tr.filters td {
+    text-overflow: unset;
+}
 th .modal-content, td .modal-content {
     font-size: 1rem; /*revert*/
 }
