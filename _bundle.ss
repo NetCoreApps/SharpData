@@ -1,7 +1,7 @@
 ```code
-* run in host project directory with `x run _bundle.ss` *
+* run in .csproj AfterPublish, manual usage: `x run _bundle.ss -to <path>` *
 
-{{ [ 'content:/src/css/' ] |> bundleCss({ minify:true, disk:true, out:`content:${to}/bundle.css` }) }}
+[ 'content:/src/css/' ] |> bundleCss({ minify:true, disk:true, out:`content:${to}/bundle.css` })
 
 {{ [
     'content:/src/components/',
