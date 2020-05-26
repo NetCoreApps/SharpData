@@ -35,7 +35,7 @@ Vue.component('format', FormatString);
 
 @Component({ template:
 `<div>
-    <div v-if="!loading" class="main-query">
+    <div v-if="!loading" class="main-query text-nowrap">
         <span class="btn svg svg-fields svg-2x" title="View Columns" @click="showSelectColumns=!showSelectColumns"></span>
         <button class="btn first-link svg-2x" :disabled="skip==0" title="<< first" @click="viewNext(-total)"></button>
         <button class="btn left-link svg-2x"  :disabled="skip==0" title="< previous" @click="viewNext(-100)"></button>

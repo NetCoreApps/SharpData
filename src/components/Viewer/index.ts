@@ -33,7 +33,7 @@ import {
         
         <nav id="left">
             <div id="nav-filter">
-                <i v-if="txtFilter" class="text-close" style="position:absolute;margin:0 0 0 265px;" title="clear" @click="txtFilter=''"></i>
+                <i v-if="txtFilter" class="text-close" style="position:absolute;margin:0 0 0 215px;" title="clear" @click="txtFilter=''"></i>
                 <v-input v-model="txtFilter" id="txtFilter" placeholder="filter" inputClass="form-control" />
             </div>
             <div id="sidebar" class="">
