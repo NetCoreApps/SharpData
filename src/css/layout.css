@@ -53,6 +53,7 @@ main {
 .main-query, .loading-query {
     height: 38px;
     font-size: 20px;
+    padding-top: 1px;
 }
 .main-container {
     overflow-y: scroll;
