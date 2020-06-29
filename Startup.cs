@@ -57,7 +57,11 @@ namespace SharpData
                 MapProjectPath("~/northwind.sqlite"), SqliteDialect.Provider));
 
             // Example of registering multiple RDBMS's in code
-            // var dbFactory = container.Resolve<IDbConnectionFactory>();
+            var dbFactory = container.Resolve<IDbConnectionFactory>();
+            
+            dbFactory.RegisterConnection("chinook", 
+                MapProjectPath("~/chinook.sqlite"), SqliteDialect.Provider);
+            
             // dbFactory.RegisterConnection("techstacks", 
             //     Environment.GetEnvironmentVariable("TECHSTACKS_DB"),
             //     PostgreSqlDialect.Provider);

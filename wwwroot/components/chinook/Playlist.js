@@ -56,56 +56,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_property_decorator_1 = require("vue-property-decorator");
-var shared_1 = require("../../src/shared");
-var Customer = /** @class */ (function (_super) {
-    __extends(Customer, _super);
-    function Customer() {
+var shared_1 = require("../../../src/shared");
+var Playlist = /** @class */ (function (_super) {
+    __extends(Playlist, _super);
+    function Playlist() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.customer = null;
-        _this.orders = [];
+        _this.tracks = [];
         return _this;
     }
-    Object.defineProperty(Customer.prototype, "id", {
-        get: function () { return this.row.Id; },
-        enumerable: true,
+    Object.defineProperty(Playlist.prototype, "id", {
+        get: function () { return this.row.PlaylistId; },
+        enumerable: false,
         configurable: true
     });
-    Customer.prototype.mounted = function () {
+    Playlist.prototype.trackHref = function (trackId) { return "tracks?filter=TrackId:" + trackId; };
+    Playlist.prototype.mounted = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, fields, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, shared_1.sharpData(this.db, this.table, { Id: this.id })];
+            var trackIds, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, shared_1.sharpData(this.db, 'playlist_track', { PlaylistId: this.id, take: 200 })];
                     case 1:
-                        _a.customer = (_c.sent())[0];
-                        fields = 'Id,EmployeeId,OrderDate,Freight,ShipVia,ShipCity,ShipCountry';
-                        _b = this;
-                        return [4 /*yield*/, shared_1.sharpData(this.db, 'Order', { CustomerId: this.id, fields: fields })];
+                        trackIds = (_b.sent()).map(function (x) { return x.TrackId; });
+                        _a = this;
+                        return [4 /*yield*/, shared_1.sharpData(this.db, 'tracks', { TrackId: trackIds.join(',') + ',' })];
                     case 2:
-                        _b.orders = _c.sent();
+                        _a.tracks = _b.sent();
                         return [2 /*return*/];
                 }
             });
         });
     };
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Customer.prototype, "db", void 0);
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Customer.prototype, "table", void 0);
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Customer.prototype, "row", void 0);
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Customer.prototype, "columns", void 0);
-    Customer = __decorate([
-        vue_property_decorator_1.Component({ template: "<div v-if=\"id\" class=\"pl-2\">\n    <h3 class=\"text-success\">{{customer.ContactName}}</h3>\n    <table class=\"table table-bordered\" style=\"width:auto\">\n        <tr>\n            <th>Contact!</th>\n            <td>{{ customer.ContactName }} ({{ customer.ContactTitle }})</td>\n        </tr>\n        <tr>\n            <th>Address</th>\n            <td>\n                <div>{{ customer.Address }}</div>\n                <div>{{ customer.City }}, {{ customer.PostalCode }}, {{ customer.Country }}</div>\n            </td>\n        </tr>\n        <tr>\n            <th>Phone</th>\n            <td>{{ customer.Phone }}</td>\n        </tr>\n        <tr v-if=\"customer.Fax\">\n            <th>Fax</th>\n            <td>{{ customer.Fax }}</td>\n        </tr>\n    </table>\n    <jsonviewer :value=\"orders\" />\n</div>\n<div v-else class=\"alert alert-danger\">Customer Id needs to be selected</div>"
+    Playlist = __decorate([
+        vue_property_decorator_1.Component({ template: "<div v-if=\"id\">\n    <div v-if=\"tracks.length\">\n        <h5>Tracks</h5>\n        <ul>\n            <li v-for=\"x in tracks\"><a :href=\"trackHref(x.TrackId)\">{{x.Name}}</a></li>\n        </ul>\n    </div>\n    <div v-else>playlist has no tracks</div>\n</div>\n<div v-else class=\"alert alert-danger\">Playlist Id needs to be selected</div>"
         })
-    ], Customer);
-    return Customer;
-}(vue_property_decorator_1.Vue));
-shared_1.registerRowComponent('main', 'customer', Customer, 'customer');
+    ], Playlist);
+    return Playlist;
+}(shared_1.RowComponent));
+shared_1.registerRowComponent('chinook', 'playlists', Playlist, 'playlist');

@@ -13,6 +13,14 @@ declare let global: any; // populated from package.json/jest
 export const client = new JsonServiceClient('/');
 
 import {desktopInfo, desktopTextFile, evaluateCode, desktopSaveTextFile} from '@servicestack/desktop';
+import {Prop} from "vue-property-decorator";
+
+export class RowComponent extends Vue {
+    @Prop() public db: string;
+    @Prop() public table: string;
+    @Prop() row: any;
+    @Prop() columns: ColumnSchema[];
+}
 
 const rowComponents:{[id:string]:{[id:string]:string}} = {};
 export function getRowComponent(db:string, table:string) {

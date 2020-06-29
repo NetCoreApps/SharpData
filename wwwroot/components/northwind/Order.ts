@@ -1,5 +1,5 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import {registerRowComponent, ColumnSchema, sharpData} from "../../src/shared";
+import {registerRowComponent, RowComponent, sharpData} from "../../../src/shared";
 
 @Component({ template: 
 `<div v-if="id">
@@ -7,12 +7,7 @@ import {registerRowComponent, ColumnSchema, sharpData} from "../../src/shared";
 </div>
 <div v-else class="alert alert-danger">Order Id needs to be selected</div>`
 })
-class Order extends Vue {
-    @Prop() public db: string;
-    @Prop() public table: string;
-    @Prop() row: any;
-    @Prop() columns: ColumnSchema[];
-    
+class Order extends RowComponent {
     details:any[] = [];
     
     get id() { return this.row.Id; }

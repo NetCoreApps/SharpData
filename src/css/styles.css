@@ -65,6 +65,9 @@ table.results td {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+table.results td.row-component {
+    max-width: 900px;
+}
 table.results tr.filters td {
     text-overflow: unset;
 }

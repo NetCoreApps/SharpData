@@ -56,7 +56,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_property_decorator_1 = require("vue-property-decorator");
-var shared_1 = require("../../src/shared");
+var shared_1 = require("../../../src/shared");
 var Order = /** @class */ (function (_super) {
     __extends(Order, _super);
     function Order() {
@@ -66,7 +66,7 @@ var Order = /** @class */ (function (_super) {
     }
     Object.defineProperty(Order.prototype, "id", {
         get: function () { return this.row.Id; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Order.prototype.mounted = function () {
@@ -84,22 +84,10 @@ var Order = /** @class */ (function (_super) {
             });
         });
     };
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Order.prototype, "db", void 0);
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Order.prototype, "table", void 0);
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Order.prototype, "row", void 0);
-    __decorate([
-        vue_property_decorator_1.Prop()
-    ], Order.prototype, "columns", void 0);
     Order = __decorate([
         vue_property_decorator_1.Component({ template: "<div v-if=\"id\">\n    <jsonviewer :value=\"details\" />\n</div>\n<div v-else class=\"alert alert-danger\">Order Id needs to be selected</div>"
         })
     ], Order);
     return Order;
-}(vue_property_decorator_1.Vue));
+}(shared_1.RowComponent));
 shared_1.registerRowComponent('main', 'Order', Order, 'order');

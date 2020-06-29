@@ -85,8 +85,6 @@ export class Viewer extends Vue {
     }
 
     async submit() {
-        await exec(this, async () => {
-        });
     }
 }
 export default Viewer;

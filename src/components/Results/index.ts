@@ -13,7 +13,7 @@ import {
     getRowComponent,
     TableSettings
 } from '../../shared';
-import {getField, humanize, normalizeKey, toCamelCase, toDateFmt} from "@servicestack/client";
+import {getField, humanize, normalizeKey, splitOnFirst, toCamelCase, toDateFmt} from "@servicestack/client";
 import {Route} from "vue-router";
 import {desktopSaveDownloadUrl, evaluateCode} from "@servicestack/desktop";
 
@@ -69,7 +69,7 @@ Vue.component('format', FormatString);
             <tr class="filters">
                 <td v-for="(f,j) in fieldNames">
                     <input type="text" v-model="filters[f]" @keydown.enter.stop="filterSearch()">
-                    <span v-if="j==fieldNames.length-1" style="position:absolute;margin-left:-20px;"><i class="svg svg-btn svg-filter svg-md" :title="helpFilters()" /></span>
+                    <span v-if="j==fieldNames.length-1" style="margin:0 0 0 -23px;"><i class="svg svg-btn svg-filter svg-md" :title="helpFilters()" /></span>
                 </td>
             </tr>
             <template v-for="(r,i) in results">
@@ -80,7 +80,7 @@ Vue.component('format', FormatString);
                 </td>
             </tr>
             <tr v-if="showRowComponent(i)">
-                <td :colspan="fieldNames.length">
+                <td class="row-component" :colspan="fieldNames.length">
                     <component :is="rowComponent" :db="db" :table="table" :row="r" :columns="columns"></component>
                 </td>                
             </tr>
@@ -150,6 +150,11 @@ export class Results extends Vue {
         this.orderBy = settings.orderBy || '';
         this.filters = settings.filters || {};
         this.fields = settings.fields || [];
+        
+        if (this.$route.query.filter) {
+            const parts = splitOnFirst(this.$route.query.filter as string,':');
+            this.filters = { [parts[0]]: parts[1] };
+        }
 
         this.results = [];
         await loadTable(this, this.db, this.table);
