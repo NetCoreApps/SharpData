@@ -10,12 +10,12 @@ import {
     openUrl,
     saveTableSettings,
     store,
+    getRowComponent,
     TableSettings
 } from '../../shared';
 import {getField, humanize, normalizeKey, toCamelCase, toDateFmt} from "@servicestack/client";
 import {Route} from "vue-router";
 import {desktopSaveDownloadUrl, evaluateCode} from "@servicestack/desktop";
-import {getRowComponent} from "../Custom/all";
 
 @Component({ template:
     `<a v-if="isUrl" :href="value" target="_blank">{{url}}</a>

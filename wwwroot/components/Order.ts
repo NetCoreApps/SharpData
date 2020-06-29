@@ -1,7 +1,5 @@
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import {ColumnSchema, sharpData, store} from "../../shared";
-import {registerRowComponent} from "./all";
-import {getField} from "@servicestack/client";
+import {registerRowComponent, ColumnSchema, sharpData} from "../../src/shared";
 
 @Component({ template: 
 `<div v-if="id">
@@ -24,4 +22,3 @@ class Order extends Vue {
     }
 }
 registerRowComponent('main','Order', Order, 'order');
-

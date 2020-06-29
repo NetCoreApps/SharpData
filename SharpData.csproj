@@ -23,5 +23,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Update="wwwroot\lib\**\*.*" CopyToPublishDirectory="Never" />
+      <None Include="wwwroot\components\Customer.ts" />
+      <None Include="wwwroot\components\Order.ts" />
     </ItemGroup>
 </Project>
