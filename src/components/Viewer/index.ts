@@ -44,7 +44,7 @@ import {
                             {{d}}
                         </h4>
                         <div v-for="t in filtered(tables)" :key="t" :class="['datamodel',{selected:t==table}]" :title="t">
-                            <router-link class="ml-3" :to="link(d,t)">{{t}}</router-link>
+                            <router-link class="ml-3" :to="link(d,t)">{{tableName(d,t)}}</router-link>
                             <span v-if="store.getColumnTotal(d,t) != null" class="text-muted">({{store.getColumnTotal(d,t)}})</span>
                         </div>
                     </div>
@@ -80,6 +80,11 @@ export class Viewer extends Vue {
             : tables;
     }
     link(d:string,t:string) { return `/${d}/${t}`; }
+    
+    tableName(db:string, table:string) {
+        const config = store.dbConfigs[db]; 
+        return config && config.tableName ? config.tableName(table) ?? table : table;
+    }
 
     async mounted() {
     }

@@ -85,8 +85,7 @@ namespace SharpData
                 ScriptMethods = {new DbScriptsAsync()},
                 Args = {
                     //Only display user-defined list of tables:
-                    ["tables"] =
-                        "Customer,Order,OrderDetail,Category,Product,Employee,EmployeeTerritory,Shipper,Supplier,Region,Territory",
+                    // ["tables"] = "Customer,Order,OrderDetail,Category,Product,Employee,EmployeeTerritory,Shipper,Supplier,Region,Territory",
                     // ["tables_techstacks"] = "technology,technology_stack,technology_choice,organization,organization_member,post,post_comment,post_vote,custom_user_auth,user_auth_details,user_activity,page_stats",
                 }
             });

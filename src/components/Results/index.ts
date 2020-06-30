@@ -21,10 +21,12 @@ import {desktopSaveDownloadUrl, evaluateCode} from "@servicestack/desktop";
     `<a v-if="isUrl" :href="value" target="_blank">{{url}}</a>
      <i v-else-if="lower == 'false'" class="svg svg-md bool-off-muted"></i>
      <i v-else-if="lower == 'true'" class="svg svg-md bool-on-muted"></i>
+     <a v-else-if="href" :href="href">{{format}}</a>
      <span v-else>{{format}}</span>
 `})
 class FormatString extends Vue {
     @Prop({ default: '' }) public value: any;
+    @Prop({ default: '' }) public href: string|null;
 
     get lower() { return `${this.value}`.toLowerCase(); }
     get isUrl() { return typeof this.value == "string" && this.value.startsWith('http'); }
@@ -76,7 +78,7 @@ Vue.component('format', FormatString);
             <tr :key="i">
                 <td v-for="(f,j) in fieldNames" :key="j" :title="renderValue(getField(r,f))">
                     <span v-if="j == 0 && rowComponent" :class="rowComponentClass(i)" @click="toggleRowComponent(i)"></span>
-                    <format :value="getField(r,f)" />
+                    <format :value="getField(r,f)" :href="getLink(r,f)" />
                 </td>
             </tr>
             <tr v-if="showRowComponent(i)">
@@ -140,6 +142,9 @@ export class Results extends Vue {
     }
     
     async clear() {
+        if (this.$route.query.filter) {
+            this.$router.push(this.$route.path);
+        }
         await saveTableSettings(this.db, this.table, null);
         await this.reset();
     }
@@ -227,6 +232,9 @@ export class Results extends Vue {
             let json = await r.text();
             return json && JSON.parse(json) || [];
         });
+        if (this.rowComponent && this.results.length == 1) {
+            this.openComponents.push(0);
+        }
         this.total = await exec(this, async () => {
             let url = `/db/${this.db}/${this.table}/total?format=json`;
             url += this.filterQuery;
@@ -274,6 +282,12 @@ export class Results extends Vue {
     }
 
     getField(o: any, name: string) { return getField(o,name); }
+
+    getLink(o: any, name: string) {
+        const config = store.dbConfigs[this.db];
+        const fnLink = config && config.links && config.links[this.table] && config.links[this.table][name];
+        return fnLink && fnLink(getField(o,name));
+    }
 
     async setOrderBy(field:string) {
         if (this.orderBy == field) {

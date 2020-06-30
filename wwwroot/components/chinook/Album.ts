@@ -4,8 +4,7 @@ import {padInt} from '@servicestack/client';
 
 @Component({ template: 
 `<div v-if="id">
-    <h4>{{row.Title}}</h4>
-    <h4><span class="text-muted">by</span> {{artist.Name}}</h4>
+    <h4>{{row.Title}} <span class="text-muted">by</span> {{artist.Name}}</h4>
     <jsonviewer :value="tracks" />
 </div>
 <div v-else class="alert alert-danger">Album Id needs to be selected</div>`

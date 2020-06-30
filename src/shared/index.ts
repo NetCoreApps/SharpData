@@ -76,6 +76,7 @@ interface State {
     columns: {[id:string]:{[id:string]:ColumnSchema[]}};
     getColumnTotal(db:string,table:string):number|null;
     getColumnSchemas(db:string,table:string):ColumnSchema[];
+    dbConfigs: {[id:string]:DbConfig};
 }
 export const store: State = {
     debug: global.CONFIG.debug as boolean,
@@ -91,7 +92,21 @@ export const store: State = {
     getColumnSchemas(db: string, table: string) {
         return this.columns[db] && this.columns[db][table] || [];
     },
+    dbConfigs: {},
 };
+
+interface DbConfig {
+    tableName?(name:string):string;
+    showTables?:string[];
+    links?:any;
+}
+
+export function dbConfig(db:string, config:DbConfig) {
+    if (config.showTables && config.showTables.length > 0) {
+        Vue.set(store.tables, db, config.showTables);
+    }
+    Vue.set(store.dbConfigs, db, config);
+}
 
 class EventBus extends Vue {
     store = store;

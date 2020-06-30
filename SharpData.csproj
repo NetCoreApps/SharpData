@@ -70,5 +70,23 @@
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
           <DependentUpon>Playlist.ts</DependentUpon>
         </Content>
+        <Content Update="wwwroot\components\chinook\Config.ts">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Update="wwwroot\components\chinook\Config.js">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+          <DependentUpon>Config.ts</DependentUpon>
+        </Content>
+        <Content Update="wwwroot\components\northwind\Config.ts">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Update="wwwroot\components\northwind\Config.js">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+          <DependentUpon>Config.ts</DependentUpon>
+        </Content>
     </ItemGroup>
 </Project>

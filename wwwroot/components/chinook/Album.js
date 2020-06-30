@@ -107,7 +107,7 @@ var Album = /** @class */ (function (_super) {
         });
     };
     Album = __decorate([
-        vue_property_decorator_1.Component({ template: "<div v-if=\"id\">\n    <h4>{{row.Title}}</h4>\n    <h4><span class=\"text-muted\">by</span> {{artist.Name}}</h4>\n    <jsonviewer :value=\"tracks\" />\n</div>\n<div v-else class=\"alert alert-danger\">Album Id needs to be selected</div>"
+        vue_property_decorator_1.Component({ template: "<div v-if=\"id\">\n    <h4>{{row.Title}} <span class=\"text-muted\">by</span> {{artist.Name}}</h4>\n    <jsonviewer :value=\"tracks\" />\n</div>\n<div v-else class=\"alert alert-danger\">Album Id needs to be selected</div>"
         })
     ], Album);
     return Album;
