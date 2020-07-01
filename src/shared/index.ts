@@ -5,7 +5,7 @@ import {
     toDate, getField, splitOnFirst,
     errorResponse, errorResponseExcept,
     toPascalCase,
-    queryString, padInt, appendQueryString,
+    queryString, padInt, appendQueryString, humanize,
 } from '@servicestack/client';
 
 declare let global: any; // populated from package.json/jest
@@ -99,14 +99,23 @@ interface DbConfig {
     tableName?(name:string):string;
     showTables?:string[];
     links?:any;
+    rowComponents?:{[table:string]:VueConstructor};
 }
 
 export function dbConfig(db:string, config:DbConfig) {
     if (config.showTables && config.showTables.length > 0) {
         Vue.set(store.tables, db, config.showTables);
     }
+    if (config.rowComponents) {
+        for (let table of Object.keys(config.rowComponents)) {
+            registerRowComponent(db, table, config.rowComponents[table], table);
+        }
+    }
     Vue.set(store.dbConfigs, db, config);
 }
+
+export const splitPascalCase = (table:string) => 
+    humanize(table).split(' ').map(toPascalCase).join(' ')
 
 class EventBus extends Vue {
     store = store;

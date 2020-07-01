@@ -94,7 +94,7 @@ Object.assign(window, window["@servicestack/desktop"], window["@servicestack/cli
 
 {{/if}}
 
-{{ ['components/'] |> bundleJs({ minify:false, bundle:false }) }}
+{{ ['custom/'] |> bundleJs({ minify:false, bundle:false }) }}
 
 {{ scripts |> raw }}
 

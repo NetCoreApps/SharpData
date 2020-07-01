@@ -25,68 +25,23 @@
         <None Update="chinook.sqlite">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="wwwroot\components\Customer.ts" />
-        <None Include="wwwroot\components\Order.ts" />
-        <Content Update="wwwroot\components\northwind\Customer.ts">
+        <Content Update="wwwroot\components\chinook.ts">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>
-        <Content Update="wwwroot\components\northwind\Customer.js">
+        <Content Update="wwwroot\components\chinook.js">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+          <DependentUpon>chinook.ts</DependentUpon>
+        </Content>
+        <Content Update="wwwroot\components\northwind.ts">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>
-        <Content Update="wwwroot\components\northwind\Order.ts">
+        <Content Update="wwwroot\components\northwind.js">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-        <Content Update="wwwroot\components\northwind\Order.js">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Album.ts">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Album.js">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-          <DependentUpon>Artist.ts</DependentUpon>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Artist.ts">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Artist.js">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-          <DependentUpon>Order.ts</DependentUpon>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Playlist.ts">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Playlist.js">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-          <DependentUpon>Playlist.ts</DependentUpon>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Config.ts">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-        <Content Update="wwwroot\components\chinook\Config.js">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-          <DependentUpon>Config.ts</DependentUpon>
-        </Content>
-        <Content Update="wwwroot\components\northwind\Config.ts">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-        <Content Update="wwwroot\components\northwind\Config.js">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-          <DependentUpon>Config.ts</DependentUpon>
+          <DependentUpon>northwind.ts</DependentUpon>
         </Content>
     </ItemGroup>
 </Project>

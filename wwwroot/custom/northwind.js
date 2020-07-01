@@ -55,61 +55,103 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var shared_1 = require("../../src/shared");
 var vue_property_decorator_1 = require("vue-property-decorator");
-var shared_1 = require("../../../src/shared");
-var client_1 = require("@servicestack/client");
-var Album = /** @class */ (function (_super) {
-    __extends(Album, _super);
-    function Album() {
+var Customer = /** @class */ (function (_super) {
+    __extends(Customer, _super);
+    function Customer() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.artist = null;
-        _this.tracks = [];
+        _this.customer = null;
+        _this.orders = [];
         return _this;
     }
-    Object.defineProperty(Album.prototype, "id", {
-        get: function () { return this.row.AlbumId; },
+    Object.defineProperty(Customer.prototype, "id", {
+        get: function () { return this.row.Id; },
         enumerable: false,
         configurable: true
     });
-    Album.prototype.mounted = function () {
+    Customer.prototype.mounted = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, secsToTime, genres, media, _b;
+            var _a, fields, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _a = this;
-                        return [4 /*yield*/, shared_1.sharpData(this.db, 'artists', { ArtistId: this.row.ArtistId })];
+                        return [4 /*yield*/, shared_1.sharpData(this.db, this.table, { Id: this.id })];
                     case 1:
-                        _a.artist = (_c.sent())[0];
-                        secsToTime = function (s) { return Math.floor(s / 60) + ":" + client_1.padInt(Math.round(s % 60)); };
-                        genres = {};
-                        return [4 /*yield*/, shared_1.sharpData(this.db, 'genres')];
-                    case 2:
-                        (_c.sent()).forEach(function (x) { return genres[x.GenreId] = x.Name; });
-                        media = {};
-                        return [4 /*yield*/, shared_1.sharpData(this.db, 'media_types')];
-                    case 3:
-                        (_c.sent()).forEach(function (x) { return media[x.MediaTypeId] = x.Name; });
+                        _a.customer = (_c.sent())[0];
+                        fields = 'Id,EmployeeId,OrderDate,Freight,ShipVia,ShipCity,ShipCountry';
                         _b = this;
-                        return [4 /*yield*/, shared_1.sharpData(this.db, 'tracks', { AlbumId: this.id })];
-                    case 4:
-                        _b.tracks = (_c.sent()).map(function (x) { return ({
-                            Name: x.Name,
-                            Genre: genres[x.GenreId],
-                            Duration: secsToTime(x.Milliseconds / 1000),
-                            Price: "$" + x.UnitPrice,
-                            Size: Math.floor(x.Bytes / 1024) + " kB",
-                            Media: media[x.MediaTypeId],
-                        }); });
+                        return [4 /*yield*/, shared_1.sharpData(this.db, 'Order', { CustomerId: this.id, fields: fields })];
+                    case 2:
+                        _b.orders = _c.sent();
                         return [2 /*return*/];
                 }
             });
         });
     };
-    Album = __decorate([
-        vue_property_decorator_1.Component({ template: "<div v-if=\"id\">\n    <h4>{{row.Title}} <span class=\"text-muted\">by</span> {{artist.Name}}</h4>\n    <jsonviewer :value=\"tracks\" />\n</div>\n<div v-else class=\"alert alert-danger\">Album Id needs to be selected</div>"
+    Customer = __decorate([
+        vue_property_decorator_1.Component({ template: "<div v-if=\"id\" class=\"pl-2\">\n    <h3 class=\"text-success\">{{customer.ContactName}}</h3>\n    <table class=\"table table-bordered\" style=\"width:auto\">\n        <tr>\n            <th>Contact</th>\n            <td>{{ customer.ContactName }} ({{ customer.ContactTitle }})</td>\n        </tr>\n        <tr>\n            <th>Address</th>\n            <td>\n                <div>{{ customer.Address }}</div>\n                <div>{{ customer.City }}, {{ customer.PostalCode }}, {{ customer.Country }}</div>\n            </td>\n        </tr>\n        <tr>\n            <th>Phone</th>\n            <td>{{ customer.Phone }}</td>\n        </tr>\n        <tr v-if=\"customer.Fax\">\n            <th>Fax</th>\n            <td>{{ customer.Fax }}</td>\n        </tr>\n    </table>\n    <jsonviewer :value=\"orders\" />\n</div>\n<div v-else class=\"alert alert-danger\">Customer Id needs to be selected</div>"
         })
-    ], Album);
-    return Album;
+    ], Customer);
+    return Customer;
 }(shared_1.RowComponent));
-shared_1.registerRowComponent('chinook', 'albums', Album, 'album');
+var Order = /** @class */ (function (_super) {
+    __extends(Order, _super);
+    function Order() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.details = [];
+        return _this;
+    }
+    Object.defineProperty(Order.prototype, "id", {
+        get: function () { return this.row.Id; },
+        enumerable: false,
+        configurable: true
+    });
+    Order.prototype.mounted = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, shared_1.sharpData(this.db, 'OrderDetail', { OrderId: this.id })];
+                    case 1:
+                        _a.details = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Order = __decorate([
+        vue_property_decorator_1.Component({ template: "<div v-if=\"id\">\n    <jsonviewer :value=\"details\" />\n</div>\n<div v-else class=\"alert alert-danger\">Order Id needs to be selected</div>"
+        })
+    ], Order);
+    return Order;
+}(shared_1.RowComponent));
+shared_1.dbConfig('main', {
+    showTables: 'Customer,Order,OrderDetail,Category,Product,Employee,Shipper,Supplier,Region,Territory'.split(','),
+    tableName: shared_1.splitPascalCase,
+    links: {
+        Order: {
+            CustomerId: function (id) { return "Customer?filter=Id:" + id; },
+            EmployeeId: function (id) { return "Employee?filter=Id:" + id; },
+            ShipVia: function (id) { return "Shipper?filter=Id:" + id; },
+        },
+        OrderDetail: {
+            OrderId: function (id) { return "Order?filter=Id:" + id; },
+            ProductId: function (id) { return "Product?filter=Id:" + id; },
+        },
+        Product: {
+            SupplierId: function (id) { return "Supplier?filter=Id:" + id; },
+            CategoryId: function (id) { return "Category?filter=Id:" + id; },
+        },
+        Territory: {
+            RegionId: function (id) { return "Region?filter=Id:" + id; },
+        },
+    },
+    rowComponents: {
+        Order: Order,
+        Customer: Customer,
+    }
+});
