@@ -1,6 +1,6 @@
 debug false
-name Northwind SharpData UI
+name Chinook SharpData UI
 appName sharpdata
 
 # Configure below. Supported dialects: sqlite, mysql, postgres, sqlserver
-db.connections[northwind] { db:sqlite, connection: 'northwind.sqlite' }
+db.connections[chinook] { db:sqlite, connection:'chinook.sqlite' }

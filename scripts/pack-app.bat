@@ -1,6 +1,6 @@
 PUSHD ..
 rd /q /s dist
-md dist\assets dist\db dist\components
+md dist\assets dist\db dist\custom
 xcopy /E wwwroot\assets .\dist\assets\
 xcopy /E wwwroot\db .\dist\db\
 x run _bundle.ss -to /dist

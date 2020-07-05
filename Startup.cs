@@ -53,18 +53,17 @@ namespace SharpData
                 DebugMode = AppSettings.Get(nameof(HostConfig.DebugMode), HostingEnvironment.IsDevelopment()),
             });
 
-            container.Register<IDbConnectionFactory>(c => new OrmLiteConnectionFactory(
-                MapProjectPath("~/northwind.sqlite"), SqliteDialect.Provider));
+            container.Register<IDbConnectionFactory>(c => 
+                new OrmLiteConnectionFactory(":memory:", SqliteDialect.Provider));
 
             // Example of registering multiple RDBMS's in code
             var dbFactory = container.Resolve<IDbConnectionFactory>();
             
+            dbFactory.RegisterConnection("northwind", 
+                MapProjectPath("~/northwind.sqlite"), SqliteDialect.Provider);
             dbFactory.RegisterConnection("chinook", 
                 MapProjectPath("~/chinook.sqlite"), SqliteDialect.Provider);
             
-            // dbFactory.RegisterConnection("techstacks", 
-            //     Environment.GetEnvironmentVariable("TECHSTACKS_DB"),
-            //     PostgreSqlDialect.Provider);
             // dbFactory.RegisterConnection("reporting", 
             //     Environment.GetEnvironmentVariable("MSSQL_CONNECTION"),
             //     SqlServer2012Dialect.Provider);
@@ -82,12 +81,7 @@ namespace SharpData
 
             Plugins.Add(new SharpPagesFeature {
                 EnableSpaFallback = true,
-                ScriptMethods = {new DbScriptsAsync()},
-                Args = {
-                    //Only display user-defined list of tables:
-                    // ["tables"] = "Customer,Order,OrderDetail,Category,Product,Employee,EmployeeTerritory,Shipper,Supplier,Region,Territory",
-                    // ["tables_techstacks"] = "technology,technology_stack,technology_choice,organization,organization_member,post,post_comment,post_vote,custom_user_auth,user_auth_details,user_activity,page_stats",
-                }
+                ScriptMethods = { new DbScriptsAsync() },
             });
         }
     }

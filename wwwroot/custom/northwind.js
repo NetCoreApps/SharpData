@@ -129,7 +129,7 @@ var Order = /** @class */ (function (_super) {
     ], Order);
     return Order;
 }(shared_1.RowComponent));
-shared_1.dbConfig('main', {
+shared_1.dbConfig('northwind', {
     showTables: 'Customer,Order,OrderDetail,Category,Product,Employee,Shipper,Supplier,Region,Territory'.split(','),
     tableName: shared_1.splitPascalCase,
     links: {

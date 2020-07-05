@@ -38,7 +38,8 @@ import {
             </div>
             <div id="sidebar" class="">
                 <div>
-                    <div v-for="(tables,d) in store.tables" class="ml-1 mt-2">
+                    <template v-for="(tables,d) in store.tables">
+                    <div v-if="filtered(tables).length > 0" class="ml-1 mt-2">
                         <h4>
                             <i class="svg-db svg-2x"></i>
                             {{d}}
@@ -48,6 +49,7 @@ import {
                             <span v-if="store.getColumnTotal(d,t) != null" class="text-muted">({{store.getColumnTotal(d,t)}})</span>
                         </div>
                     </div>
+                    </template>                    
                 </div>
             </div>
         </nav>

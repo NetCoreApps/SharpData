@@ -59,7 +59,7 @@ class Order extends RowComponent {
     }
 }
 
-dbConfig('main', {
+dbConfig('northwind', {
     showTables: 'Customer,Order,OrderDetail,Category,Product,Employee,Shipper,Supplier,Region,Territory'.split(','),
     tableName: splitPascalCase,
     links: {

@@ -5,7 +5,8 @@
     "start": "app -debug start https://localhost:5001",
     "pack-app": "cd scripts && pack-app.bat",
     "publish-app": "cd scripts && publish-app.bat",
-    "init-test": "copy northwind.sqlite dist && copy wwwroot\\components\\*.js dist\\components && copy scripts\\deploy\\app.northwind.settings dist\\app.settings",
+    "init-chinook": "copy chinook.sqlite dist && copy wwwroot\\custom\\chinook.js dist\\custom && copy scripts\\deploy\\app.chinook.settings dist\\app.settings",
+    "init-northwind": "copy northwind.sqlite dist && copy wwwroot\\custom\\northwind.js dist\\custom && copy scripts\\deploy\\app.northwind.settings dist\\app.settings",
     "run-test": "cd dist && app -debug"
   }
 }
