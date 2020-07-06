@@ -44,4 +44,9 @@
           <DependentUpon>northwind.ts</DependentUpon>
         </Content>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="dist-mix\chinook\custom" />
+      <Folder Include="dist-mix\northwind\custom" />
+    </ItemGroup>
 </Project>

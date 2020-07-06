@@ -5,8 +5,10 @@
     "start": "app -debug start https://localhost:5001",
     "pack-app": "cd scripts && pack-app.bat",
     "publish-app": "cd scripts && publish-app.bat",
-    "init-chinook": "copy chinook.sqlite dist && copy wwwroot\\custom\\chinook.js dist\\custom && copy scripts\\deploy\\app.chinook.settings dist\\app.settings",
-    "init-northwind": "copy northwind.sqlite dist && copy wwwroot\\custom\\northwind.js dist\\custom && copy scripts\\deploy\\app.northwind.settings dist\\app.settings",
+    "publish-northwind": "cd dist-mix\\northwind && x publish -token %GISTLYN_TOKEN%",
+    "publish-chinook": "cd dist-mix\\chinook && x publish -token %GISTLYN_TOKEN%",
+    "mix-chinook": "xcopy /E /Y dist-mix\\chinook dist",
+    "mix-northwind": "xcopy /E /Y dist-mix\\northwind dist",
     "run-test": "cd dist && app -debug"
   }
 }
