@@ -71,6 +71,7 @@ interface State {
     debug: boolean|null;
     desktop: DesktopInfo|null;
     hasExcel: boolean|null;
+    namedDbs: string[],
     tables: {[id:string]:string[]};
     totals: {[id:string]:{[id:string]:number}};
     columns: {[id:string]:{[id:string]:ColumnSchema[]}};
@@ -82,6 +83,7 @@ export const store: State = {
     debug: global.CONFIG.debug as boolean,
     desktop: global.CONFIG.desktop as DesktopInfo,
     hasExcel: global.CONFIG.hasExcel as boolean,
+    namedDbs: global.CONFIG.namedDbs as string[],
     tables: global.CONFIG.tables as {[id:string]:string[]},
     totals: {},
     columns: {},
@@ -103,6 +105,8 @@ interface DbConfig {
 }
 
 export function dbConfig(db:string, config:DbConfig) {
+    if (db != 'main' && store.namedDbs.indexOf(db) < 0) return;
+    
     if (config.showTables && config.showTables.length > 0) {
         Vue.set(store.tables, db, config.showTables);
     }

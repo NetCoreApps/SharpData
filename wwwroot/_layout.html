@@ -36,6 +36,7 @@ CONFIG = {
   debug:    {{ debugMode |> json }},
   desktop:  {{ desktopInfo |> json }},
   hasExcel: {{ (isWin ? typeofProgId('Excel.Application') != null : false) |> json }},
+  namedDbs: {{ dbNamedConnections |> json }},
   tables:   {}
 }
 {{#if resolveArg('tables')}}
