@@ -11,7 +11,7 @@
 
     "run-test": "cd dist && app -debug",
     "mix-chinook": "xcopy /E /Y dist-mix\\chinook dist",
-    "mix-northwind": "xcopy /E /Y dist-mix\\northwind dist",
+    "mix-northwind": "xcopy /E /Y dist-mix\\northwind dist"
   }
 }
 
