@@ -18,7 +18,9 @@ RUN dotnet restore
 
 WORKDIR /app
 RUN dotnet publish -c release -o /out --no-restore
-RUN x run _bundle.ss -to /out/wwwroot
+RUN chmod +x ./scripts/pack-app.sh
+RUN ./scripts/pack-app.sh
+RUN cp -r /app/dist /out/wwwroot
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
