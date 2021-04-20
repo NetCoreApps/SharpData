@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 rm -rf dist
 mkdir -p dist/assets
 mkdir -p dist/db
