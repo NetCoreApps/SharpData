@@ -19,12 +19,9 @@
 
     <ItemGroup>
         <Content Update="wwwroot\lib\**\*.*" CopyToPublishDirectory="Never" />
-        <None Include="northwind.sqlite">
+        <Content Include="northwind.sqlite">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="chinook.sqlite">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+        </Content>
         <Content Update="wwwroot\components\chinook.ts">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -42,6 +39,10 @@
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
           <DependentUpon>northwind.ts</DependentUpon>
+        </Content>
+        <None Remove="chinook.sqlite" />
+        <Content Include="chinook.sqlite">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
 
