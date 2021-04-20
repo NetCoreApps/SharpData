@@ -10,7 +10,8 @@
       "*": [
         "wwwroot/lib/*",
         "wwwroot/lib/js/*",
-        "typings/*"
+        "typings/*",
+        "src/*"
       ]
     }
   }

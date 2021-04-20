@@ -13,7 +13,8 @@ ENV PATH="${PATH}:/root/.dotnet/tools"
 RUN x --version
 
 COPY . .
-RUN npm install
+RUN npm install --include-dev
+RUN ./node_modules/typescript/bin/tsc -p .
 RUN dotnet restore
 
 WORKDIR /app
@@ -21,6 +22,9 @@ RUN dotnet publish -c release -o /out --no-restore
 RUN chmod +x ./scripts/pack-app.sh
 RUN ./scripts/pack-app.sh
 RUN cp -r /app/dist /out/wwwroot
+RUN cp -r /app/src /out/src
+RUN cp -r /app/typings /out/typings
+
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app

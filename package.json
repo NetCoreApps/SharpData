@@ -1,17 +1,16 @@
 {
   "scripts": {
     "dev": "tsc -w",
-
     "start": "app -debug start https://localhost:5001",
     "pack-app": "cd scripts && pack-app.bat",
     "publish-app": "cd scripts && publish-app.bat",
-
     "publish-northwind": "cd dist-mix\\northwind && x publish -token %GISTLYN_TOKEN%",
     "publish-chinook": "cd dist-mix\\chinook && x publish -token %GISTLYN_TOKEN%",
-
     "run-test": "cd dist && app -debug",
     "mix-chinook": "xcopy /E /Y dist-mix\\chinook dist",
     "mix-northwind": "xcopy /E /Y dist-mix\\northwind dist"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
   }
 }
-
