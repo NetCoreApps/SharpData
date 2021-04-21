@@ -10,7 +10,11 @@
     "mix-chinook": "xcopy /E /Y dist-mix\\chinook dist",
     "mix-northwind": "xcopy /E /Y dist-mix\\northwind dist"
   },
+  "dependencies": {
+    "vue": "2.6.12",
+    "vue-router": "3.4.9"
+  },
   "devDependencies": {
-    "typescript": "^3.8.3"
+    "typescript": "^4.1.4"
   }
 }

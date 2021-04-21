@@ -8,13 +8,12 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
  && rm -rf /var/lib/apt/lists/*
 
 RUN dotnet tool install -g x
-RUN dotnet tool install -g app
 ENV PATH="${PATH}:/root/.dotnet/tools"
 RUN x --version
 
 COPY . .
 RUN npm install --include-dev
-RUN ./node_modules/typescript/bin/tsc -p .
+RUN ./node_modules/.bin/tsc -p .
 RUN dotnet restore
 
 WORKDIR /app
@@ -28,5 +27,10 @@ RUN cp -r /app/typings /out/typings
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
+RUN chmod 755 /app
 COPY --from=build /out ./
+#WORKDIR /out
+#ENV ASPNETCORE_ENVIRONMENT=Development
+#ENV ASPNETCORE_URLS=http://+:80  
+#EXPOSE 80
 ENTRYPOINT ["dotnet", "SharpData.dll"]
