@@ -4,12 +4,10 @@ mkdir -p dist/assets
 mkdir -p dist/db
 mkdir -p dist/custom
 
-cp -r wwwroot/db ./dist/db/
+x run _bundle.ss -to dist
 
-x run _bundle.ss -to dist/
-
-cp -r wwwroot/ dist/
-cp scripts/deploy/app.settings dist/wwwroot/app.settings
+cp -r wwwroot/* dist/
+cp scripts/deploy/app.settings dist/app.settings
 
 cp wwwroot/custom/northwind.js dist-mix/northwind/
 cp northwind.sqlite dist-mix/northwindcustom

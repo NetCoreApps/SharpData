@@ -20,9 +20,11 @@ WORKDIR /app
 RUN dotnet publish -c release -o /out --no-restore
 RUN chmod +x ./scripts/pack-app.sh
 RUN ./scripts/pack-app.sh
-RUN cp -r /app/dist/**/* /out/wwwroot
+RUN cp -r /app/dist/* /out/wwwroot/
+RUN cp /app/dist/app.settings /out/app.settings
 RUN cp -r /app/src /out/src
 RUN cp -r /app/typings /out/typings
+RUN cp -r /app/dist-mix /out/dist-mix
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
