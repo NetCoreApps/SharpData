@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /app
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
@@ -27,7 +27,7 @@ RUN cp -r /app/typings /out/typings
 RUN cp -r /app/dist-mix /out/dist-mix
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS runtime
 WORKDIR /app
 RUN chmod 755 /app
 COPY --from=build /out ./

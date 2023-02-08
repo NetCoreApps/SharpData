@@ -1,9 +1,14 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -16,10 +21,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -29,9 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -63,7 +69,7 @@ var Customer = /** @class */ (function (_super) {
     }
     Object.defineProperty(Customer.prototype, "id", {
         get: function () { return this.row.Id; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Customer.prototype.mounted = function () {
@@ -73,12 +79,12 @@ var Customer = /** @class */ (function (_super) {
                 switch (_c.label) {
                     case 0:
                         _a = this;
-                        return [4 /*yield*/, shared_1.sharpData(this.db, this.table, { Id: this.id })];
+                        return [4 /*yield*/, (0, shared_1.sharpData)(this.db, this.table, { Id: this.id })];
                     case 1:
                         _a.customer = (_c.sent())[0];
                         fields = 'Id,EmployeeId,OrderDate,Freight,ShipVia,ShipCity,ShipCountry';
                         _b = this;
-                        return [4 /*yield*/, shared_1.sharpData(this.db, 'Order', { CustomerId: this.id, fields: fields })];
+                        return [4 /*yield*/, (0, shared_1.sharpData)(this.db, 'Order', { CustomerId: this.id, fields: fields })];
                     case 2:
                         _b.orders = _c.sent();
                         return [2 /*return*/];
@@ -87,7 +93,7 @@ var Customer = /** @class */ (function (_super) {
         });
     };
     Customer = __decorate([
-        vue_property_decorator_1.Component({ template: "<div v-if=\"id\" class=\"pl-2\">\n    <h3 class=\"text-success\">{{customer.ContactName}}</h3>\n    <table class=\"table table-bordered\" style=\"width:auto\">\n        <tr>\n            <th>Contact</th>\n            <td>{{ customer.ContactName }} ({{ customer.ContactTitle }})</td>\n        </tr>\n        <tr>\n            <th>Address</th>\n            <td>\n                <div>{{ customer.Address }}</div>\n                <div>{{ customer.City }}, {{ customer.PostalCode }}, {{ customer.Country }}</div>\n            </td>\n        </tr>\n        <tr>\n            <th>Phone</th>\n            <td>{{ customer.Phone }}</td>\n        </tr>\n        <tr v-if=\"customer.Fax\">\n            <th>Fax</th>\n            <td>{{ customer.Fax }}</td>\n        </tr>\n    </table>\n    <jsonviewer :value=\"orders\" />\n</div>\n<div v-else class=\"alert alert-danger\">Customer Id needs to be selected</div>"
+        (0, vue_property_decorator_1.Component)({ template: "<div v-if=\"id\" class=\"pl-2\">\n    <h3 class=\"text-success\">{{customer.ContactName}}</h3>\n    <table class=\"table table-bordered\" style=\"width:auto\">\n        <tr>\n            <th>Contact</th>\n            <td>{{ customer.ContactName }} ({{ customer.ContactTitle }})</td>\n        </tr>\n        <tr>\n            <th>Address</th>\n            <td>\n                <div>{{ customer.Address }}</div>\n                <div>{{ customer.City }}, {{ customer.PostalCode }}, {{ customer.Country }}</div>\n            </td>\n        </tr>\n        <tr>\n            <th>Phone</th>\n            <td>{{ customer.Phone }}</td>\n        </tr>\n        <tr v-if=\"customer.Fax\">\n            <th>Fax</th>\n            <td>{{ customer.Fax }}</td>\n        </tr>\n    </table>\n    <jsonviewer :value=\"orders\" />\n</div>\n<div v-else class=\"alert alert-danger\">Customer Id needs to be selected</div>"
         })
     ], Customer);
     return Customer;
@@ -101,7 +107,7 @@ var Order = /** @class */ (function (_super) {
     }
     Object.defineProperty(Order.prototype, "id", {
         get: function () { return this.row.Id; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Order.prototype.mounted = function () {
@@ -111,7 +117,7 @@ var Order = /** @class */ (function (_super) {
                 switch (_b.label) {
                     case 0:
                         _a = this;
-                        return [4 /*yield*/, shared_1.sharpData(this.db, 'OrderDetail', { OrderId: this.id })];
+                        return [4 /*yield*/, (0, shared_1.sharpData)(this.db, 'OrderDetail', { OrderId: this.id })];
                     case 1:
                         _a.details = _b.sent();
                         return [2 /*return*/];
@@ -120,30 +126,30 @@ var Order = /** @class */ (function (_super) {
         });
     };
     Order = __decorate([
-        vue_property_decorator_1.Component({ template: "<div v-if=\"id\">\n    <jsonviewer :value=\"details\" />\n</div>\n<div v-else class=\"alert alert-danger\">Order Id needs to be selected</div>"
+        (0, vue_property_decorator_1.Component)({ template: "<div v-if=\"id\">\n    <jsonviewer :value=\"details\" />\n</div>\n<div v-else class=\"alert alert-danger\">Order Id needs to be selected</div>"
         })
     ], Order);
     return Order;
 }(shared_1.RowComponent));
-shared_1.dbConfig('northwind', {
+(0, shared_1.dbConfig)('northwind', {
     showTables: 'Customer,Order,OrderDetail,Category,Product,Employee,Shipper,Supplier,Region,Territory'.split(','),
     tableName: shared_1.splitPascalCase,
     links: {
         Order: {
-            CustomerId: function (id) { return "Customer?filter=Id:" + id; },
-            EmployeeId: function (id) { return "Employee?filter=Id:" + id; },
-            ShipVia: function (id) { return "Shipper?filter=Id:" + id; },
+            CustomerId: function (id) { return "Customer?filter=Id:".concat(id); },
+            EmployeeId: function (id) { return "Employee?filter=Id:".concat(id); },
+            ShipVia: function (id) { return "Shipper?filter=Id:".concat(id); },
         },
         OrderDetail: {
-            OrderId: function (id) { return "Order?filter=Id:" + id; },
-            ProductId: function (id) { return "Product?filter=Id:" + id; },
+            OrderId: function (id) { return "Order?filter=Id:".concat(id); },
+            ProductId: function (id) { return "Product?filter=Id:".concat(id); },
         },
         Product: {
-            SupplierId: function (id) { return "Supplier?filter=Id:" + id; },
-            CategoryId: function (id) { return "Category?filter=Id:" + id; },
+            SupplierId: function (id) { return "Supplier?filter=Id:".concat(id); },
+            CategoryId: function (id) { return "Category?filter=Id:".concat(id); },
         },
         Territory: {
-            RegionId: function (id) { return "Region?filter=Id:" + id; },
+            RegionId: function (id) { return "Region?filter=Id:".concat(id); },
         },
     },
     rowComponents: {
