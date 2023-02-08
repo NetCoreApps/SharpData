@@ -1,11 +1,8 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -19,11 +16,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -34,8 +30,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -55,7 +51,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Playlist = exports.Album = exports.Artist = void 0;
 var shared_1 = require("../../src/shared");
 var vue_property_decorator_1 = require("vue-property-decorator");
 var client_1 = require("@servicestack/client");
@@ -68,7 +63,7 @@ var Artist = /** @class */ (function (_super) {
     }
     Object.defineProperty(Artist.prototype, "id", {
         get: function () { return this.row.ArtistId; },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     Artist.prototype.albumHref = function (albumId) { return "albums?filter=AlbumId:" + albumId; };
@@ -104,7 +99,7 @@ var Album = /** @class */ (function (_super) {
     }
     Object.defineProperty(Album.prototype, "id", {
         get: function () { return this.row.AlbumId; },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     Album.prototype.mounted = function () {
@@ -158,7 +153,7 @@ var Playlist = /** @class */ (function (_super) {
     }
     Object.defineProperty(Playlist.prototype, "id", {
         get: function () { return this.row.PlaylistId; },
-        enumerable: false,
+        enumerable: true,
         configurable: true
     });
     Playlist.prototype.trackHref = function (trackId) { return "tracks?filter=TrackId:" + trackId; };
