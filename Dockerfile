@@ -13,7 +13,8 @@ RUN x --version
 
 COPY . .
 RUN npm install --include-dev
-RUN ./node_modules/.bin/tsc -p .
+RUN npm install -g typescript@4.1.4
+RUN tsc -p .
 RUN dotnet restore
 
 WORKDIR /app
