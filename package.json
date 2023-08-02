@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "tsc -w",
+    "dev": "./node_modules/typescript/bin/tsc -w",
     "start": "app -debug start https://localhost:5001",
     "pack-app": "cd scripts && pack-app.bat",
     "publish-app": "cd scripts && publish-app.bat",
