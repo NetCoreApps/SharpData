@@ -36,6 +36,7 @@ services:
 networks:
   default:
     name: nginx
+    external: true
 
 volumes:
   conf:
