@@ -11,7 +11,7 @@
     "mix-northwind": "xcopy /E /Y dist-mix\\northwind dist"
   },
   "dependencies": {
-    "vue": "2.6.12",
+    "vue": "3.0.0",
     "vue-router": "3.4.9"
   },
   "devDependencies": {
